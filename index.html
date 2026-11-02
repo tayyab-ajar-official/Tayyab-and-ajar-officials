@@ -76,6 +76,14 @@ footer p{font-size:12px;color:#858590}
 .video-card h3{font-size:16px;padding:16px 18px}
 @media(max-width:900px){.video-card{flex-basis:62%}}
 @media(max-width:600px){.video-card{flex-basis:84%}}
+#loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#08090d;transition:opacity .6s ease,visibility .6s ease;animation:loaderFail .6s ease 7s forwards}
+#loader.done{opacity:0;visibility:hidden}
+.spin{position:relative;width:150px;height:150px;border-radius:50%;border:2px solid #e9c77930;border-top-color:#e9c779;animation:spin 2.2s linear infinite}
+.ltr{position:absolute;left:50%;padding:2px 8px;background:#08090d;font-family:Georgia,serif;font-size:54px;line-height:1;color:#e9c779;transform:translate(-50%,-50%);animation:upright 2.2s linear infinite}
+.ltr.t{top:0}.ltr.a{top:100%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes upright{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes loaderFail{to{opacity:0;visibility:hidden}}
 @keyframes appear{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
 @media(max-width:700px){
@@ -91,6 +99,7 @@ footer p{font-size:12px;color:#858590}
 <body>
 
 
+<div id="loader" aria-hidden="true"><div class="spin"><span class="ltr t">T</span><span class="ltr a">A</span></div></div>
 <header>
   <div class="container">
     <nav>
@@ -232,6 +241,13 @@ footer p{font-size:12px;color:#858590}
 </footer>
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+(function(){
+  const loader = document.getElementById("loader");
+  if (!loader) return;
+  const t0 = Date.now();
+  const hide = () => setTimeout(() => loader.classList.add("done"), Math.max(0, 1400 - (Date.now() - t0)));
+  if (document.readyState === "complete") hide(); else window.addEventListener("load", hide);
+})();
 (function(){
   const slider = document.getElementById("adSlider");
   if (!slider || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
