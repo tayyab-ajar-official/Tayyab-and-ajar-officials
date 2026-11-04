@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <title>Tayyab &amp; Ajar</title>
 <style>
-:root{color-scheme:dark;--bg:#08090d;--panel:#14151b;--gold:#e9c779;--white:#fff;--muted:#aaaab5}
+:root{color-scheme:dark;--ease:cubic-bezier(.22,.61,.36,1);--bg:#08090d;--panel:#14151b;--gold:#e9c779;--white:#fff;--muted:#aaaab5}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;line-height:1.6;overflow-x:hidden}
@@ -20,9 +20,9 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 .logo{font-size:clamp(16px,3vw,23px);font-weight:800;letter-spacing:1px;white-space:nowrap}
 .logo span,.gold{color:var(--gold)}
 .nav-links{display:flex;gap:clamp(10px,2.5vw,26px);align-items:center}
-.nav-links a{font-size:13px;color:#d0d0d7;transition:.25s}
+.nav-links a{font-size:13px;color:#d0d0d7;transition:color .4s ease}
 .nav-links a:hover{color:var(--gold)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:7px;background:linear-gradient(135deg,#f2d99a,#c89a44);color:#171109;font-size:14px;font-weight:800;border:1px solid transparent;transition:transform .25s,box-shadow .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:7px;background:linear-gradient(135deg,#f2d99a,#c89a44);color:#171109;font-size:14px;font-weight:800;border:1px solid transparent;transition:transform .5s var(--ease),box-shadow .5s ease}
 .btn:hover{transform:translateY(-3px);box-shadow:0 8px 26px #e9c77935}
 .btn-outline{background:transparent;color:#fff;border-color:#ffffff40}
 .hero{min-height:590px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 42%,#a47b3025,transparent 40%),radial-gradient(ellipse at 10% 90%,#704c2020,transparent 35%)}
@@ -31,7 +31,7 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 .hero-logo img{display:block;width:100%;height:100%;border-radius:50%}
 .hero-logo .monogram{font-size:84px;line-height:1}
 .hero-logo .monogram-caption{margin-top:6px}
-.hero-content{position:relative;z-index:1;max-width:760px;padding:88px 0;animation:appear .9s ease both}
+.hero-content{position:relative;z-index:1;max-width:760px;padding:88px 0;animation:appear 1.2s var(--ease) both}
 .eyebrow{color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:4px;text-transform:uppercase;margin-bottom:23px}
 h1{font-size:clamp(44px,8.5vw,86px);line-height:1.04;letter-spacing:-3px;margin-bottom:24px}
 h1 span{display:block;color:var(--gold);font-family:Georgia,serif;font-style:italic;font-weight:400}
@@ -45,7 +45,7 @@ section{padding:82px 0}
 .section-title h2{font-size:clamp(30px,5vw,44px);margin:12px 0}
 .section-title p{color:var(--muted);font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.card{position:relative;padding:30px;min-height:230px;border:1px solid #ffffff18;border-radius:14px;background:linear-gradient(145deg,#191a20,#101116);overflow:hidden;transition:.3s}
+.card{position:relative;padding:30px;min-height:230px;border:1px solid #ffffff18;border-radius:14px;background:linear-gradient(145deg,#191a20,#101116);overflow:hidden;transition:transform .6s var(--ease),border-color .5s ease}
 .card:hover{transform:translateY(-6px);border-color:#e9c77988}
 .card-icon{font-size:29px;margin-bottom:16px}
 .card h3{font-size:22px;margin-bottom:10px}
@@ -65,34 +65,53 @@ section{padding:82px 0}
 footer{border-top:1px solid #ffffff18;padding:25px 0}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
 footer p{font-size:12px;color:#858590}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.card.reveal.visible{transition:opacity 1s var(--ease),transform .7s var(--ease),border-color .5s ease}
+.card.reveal.visible:hover{transform:translateY(-6px);border-color:#e9c77988}
 .video-grid{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#e9c77988 transparent}
 .video-grid::-webkit-scrollbar{height:6px}.video-grid::-webkit-scrollbar-thumb{background:#e9c77988;border-radius:6px}
 .video-card{flex:0 0 38%;min-width:0;scroll-snap-align:start}
-.video-card{border:1px solid #ffffff18;border-radius:14px;background:linear-gradient(145deg,#191a20,#101116);overflow:hidden;transition:.3s}
+.video-card{border:1px solid #ffffff18;border-radius:14px;background:linear-gradient(145deg,#191a20,#101116);overflow:hidden;transition:transform .6s var(--ease),border-color .5s ease}
 .video-card:hover{transform:translateY(-6px);border-color:#e9c77988}
 .video-card video{display:block;width:100%;aspect-ratio:16/9;background:#000;object-fit:contain}
 .video-card h3{font-size:16px;padding:16px 18px}
 @media(max-width:900px){.video-card{flex-basis:62%}}
 @media(max-width:600px){.video-card{flex-basis:84%}}
-#loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#08090d;transition:opacity .6s ease,visibility .6s ease;animation:loaderFail .6s ease 7s forwards}
+#loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#08090d;transition:opacity .7s var(--ease),visibility .7s var(--ease);animation:loaderFail .6s ease 7s forwards}
 #loader.done{opacity:0;visibility:hidden}
-.spin{position:relative;width:150px;height:150px;border-radius:50%;border:2px solid #e9c77930;border-top-color:#e9c779;animation:spin 2.2s linear infinite}
-.ltr{position:absolute;left:50%;padding:2px 8px;background:#08090d;font-family:Georgia,serif;font-size:54px;line-height:1;color:#e9c779;transform:translate(-50%,-50%);animation:upright 2.2s linear infinite}
+.spin{position:relative;width:150px;height:150px;border-radius:50%;border:2px solid #e9c77930;border-top-color:#e9c779;animation:spin 2.6s linear infinite}
+.ltr{position:absolute;left:50%;padding:2px 8px;background:#08090d;font-family:Georgia,serif;font-size:54px;line-height:1;color:#e9c779;transform:translate(-50%,-50%);animation:upright 2.6s linear infinite}
 .ltr.t{top:0}.ltr.a{top:100%}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes upright{to{transform:translate(-50%,-50%) rotate(-360deg)}}
 @keyframes loaderFail{to{opacity:0;visibility:hidden}}
+[hidden]{display:none!important}
+.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:30px;color:var(--gold);font-size:13px;font-weight:bold;letter-spacing:.5px;transition:transform .5s var(--ease)}
+.back:hover{transform:translateX(-5px)}
+.page-view{animation:viewIn 1s var(--ease) both}
+.grid.three{grid-template-columns:1fr}
+.price-card{display:flex;flex-direction:column}
+.tier{display:block;color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:3px;margin-bottom:14px}
+.price{font-size:clamp(28px,3.4vw,36px);font-weight:800;line-height:1.15;margin-bottom:6px}
+.price-note{color:var(--muted);font-size:13px;margin-bottom:18px}
+.feat{list-style:none;margin-bottom:24px}
+.feat li{padding:9px 0;border-bottom:1px solid #ffffff12;color:var(--muted);font-size:14px}
+.price-card .btn{margin-top:auto}
+.pill{display:inline-block;padding:6px 14px;border:1px solid #e9c77966;border-radius:99px;color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:2px}
+.notice{margin-top:26px;padding:28px 24px;text-align:center;border:1px solid #e9c77945;border-radius:14px;background:#ffffff04}
+.notice p{color:var(--muted);font-size:14px;margin:14px 0 20px}
+@media(min-width:901px){.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@keyframes viewIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes appear{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
 @media(max-width:700px){
- nav{min-height:66px}.nav-links{gap:11px}.nav-links a{font-size:11px}.nav-contact{display:none}
+ nav{min-height:66px;flex-wrap:wrap;gap:4px 12px;padding:10px 0 6px}.nav-links{width:100%;gap:18px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding-bottom:4px}.nav-links::-webkit-scrollbar{display:none}.nav-links a{font-size:12px;flex:0 0 auto}.nav-contact{display:none}
  .hero{min-height:auto;flex-direction:column;align-items:flex-start;padding-top:56px}.hero-logo{order:-1;position:relative;right:auto;top:auto;margin:0 auto;width:190px;height:190px;box-shadow:0 0 0 18px #e9c77908,0 0 0 38px #e9c77905}.hero-logo .monogram{font-size:58px}.hero-content{padding:56px 0 58px}h1{letter-spacing:-2px}.hero p{font-size:14px}
  section{padding:62px 0}.grid,.about{grid-template-columns:1fr}.card{padding:26px}.brand-art{min-height:250px}
  .footer-inner{justify-content:center;text-align:center}
 }
-@media(max-width:370px){.nav-links{gap:8px}.nav-links a{font-size:10px}.logo{letter-spacing:0}.btn{padding:12px 14px;font-size:12px}}
+@media(max-width:370px){.nav-links{gap:14px}.nav-links a{font-size:11px}.logo{letter-spacing:0}.btn{padding:12px 14px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -121,6 +140,7 @@ footer p{font-size:12px;color:#858590}
       <p>Welcome to our official online space. Explore our latest highlights, watch our videos, connect with us on social media and stay connected.</p>
       <div class="actions">
         <a href="#highlights" class="btn">Explore Highlights ↓</a>
+        <a href="#animation" data-go="animation" class="btn btn-outline">Create Movie Animation ↗</a>
         <a href="https://wa.me/923076231094" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp Us ↗</a>
       </div>
       <div class="scroll-note">SCROLL DOWN &nbsp; ↓</div>
@@ -146,7 +166,7 @@ footer p{font-size:12px;color:#858590}
         <div class="card-icon">▶️</div>
         <h3>YouTube Channel</h3>
         <p>Visit our YouTube channel and watch our latest videos and highlights.</p>
-        <a class="text-link" href="https://youtube.com/@whimzorausa-p6k?feature=shared" target="_blank" rel="noopener">VISIT OUR YOUTUBE ↗</a>
+        <a class="text-link" href="#youtube" data-go="youtube">VISIT OUR YOUTUBE ↗</a>
       </article>
     </div>
   </div>
@@ -188,13 +208,13 @@ footer p{font-size:12px;color:#858590}
         <div class="card-icon">🎬</div>
         <h3>Ad Making</h3>
         <p>Need an ad for your product, business or brand? Contact us and we will create eye-catching video and social media ads for you.</p>
-        <a class="text-link" href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20an%20ad%20made." target="_blank" rel="noopener">CONTACT US FOR ADS ↗</a>
+        <a class="text-link" href="#ad-pricing" data-go="ad-pricing">SEE AD PRICES ↗</a>
       </article>
       <article class="card reveal">
         <div class="card-icon">💻</div>
         <h3>Website Making</h3>
         <p>Need a website? Contact us to get yours built. We design clean, modern and mobile-friendly websites that fit your needs.</p>
-        <a class="text-link" href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20a%20website%20made." target="_blank" rel="noopener">CONTACT US FOR WEBSITES ↗</a>
+        <a class="text-link" href="#website-pricing" data-go="website-pricing">SEE WEBSITE PRICES ↗</a>
       </article>
     </div>
     <div class="actions reveal" style="justify-content:center;margin-top:32px">
@@ -225,18 +245,129 @@ footer p{font-size:12px;color:#858590}
       <div class="actions" style="justify-content:center">
         <a href="https://wa.me/923076231094" class="btn" target="_blank" rel="noopener">WhatsApp Us ↗</a>
         <a href="https://www.facebook.com/share/1CWNABU4Nj/" class="btn btn-outline" target="_blank" rel="noopener">Facebook ↗</a>
-        <a href="https://youtube.com/@whimzorausa-p6k?feature=shared" class="btn btn-outline" target="_blank" rel="noopener">YouTube ↗</a>
+        <a href="#youtube" data-go="youtube" class="btn btn-outline">YouTube ↗</a>
       </div>
       <a href="tel:+923076231094" class="phone">+92 307 6231094</a>
     </div>
   </div>
 </section>
 </main>
+<div id="views">
+<section class="page-view" id="view-youtube" hidden>
+  <div class="container">
+    <a class="back" href="#home" data-go="">← Back to Home</a>
+    <div class="section-title">
+      <small>WATCH ON YOUTUBE</small>
+      <h2>Our <span class="gold">YouTube.</span></h2>
+      <p>Pick a link below to watch us on YouTube.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-icon">▶️</div>
+        <h3>Featured Video</h3>
+        <p>Watch our featured video on YouTube.</p>
+        <a class="text-link" href="https://youtu.be/E2d9reOSXWo?si=X3DkLxTOLYpzSajd" target="_blank" rel="noopener">WATCH ON YOUTUBE ↗</a>
+      </article>
+      <article class="card">
+        <div class="card-icon">📺</div>
+        <h3>YouTube Channel</h3>
+        <p>Visit our YouTube channel and watch our latest videos and highlights.</p>
+        <a class="text-link" href="https://youtube.com/@whimzorausa-p6k?feature=shared" target="_blank" rel="noopener">VISIT OUR CHANNEL ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-view" id="view-ad-pricing" hidden>
+  <div class="container">
+    <a class="back" href="#home" data-go="">← Back to Home</a>
+    <div class="section-title">
+      <small>AD MAKING</small>
+      <h2>Ad <span class="gold">Prices.</span></h2>
+      <p>Choose the length of your ad. Discount is available.</p>
+    </div>
+    <div class="grid">
+      <article class="card price-card">
+        <span class="tier">30 SECOND AD</span>
+        <div class="price">Rs 300</div>
+        <div class="price-note">per ad</div>
+        <ul class="feat"><li>Ad length: 30 seconds</li></ul>
+        <a href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20a%2030%20second%20ad%20%28Rs%20300%29." class="btn" target="_blank" rel="noopener">Order This Ad ↗</a>
+      </article>
+      <article class="card price-card">
+        <span class="tier">1 MINUTE AD</span>
+        <div class="price">Rs 500</div>
+        <div class="price-note">per ad</div>
+        <ul class="feat"><li>Ad length: 1 minute</li></ul>
+        <a href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20a%201%20minute%20ad%20%28Rs%20500%29." class="btn" target="_blank" rel="noopener">Order This Ad ↗</a>
+      </article>
+    </div>
+    <div class="notice">
+      <span class="pill">DISCOUNT AVAILABLE</span>
+      <p>Discount is available on ad orders. Message us on WhatsApp to ask for yours.</p>
+      <a href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20to%20ask%20about%20the%20discount%20on%20ads." class="btn" target="_blank" rel="noopener">Ask for a Discount ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="page-view" id="view-website-pricing" hidden>
+  <div class="container">
+    <a class="back" href="#home" data-go="">← Back to Home</a>
+    <div class="section-title">
+      <small>WEBSITE MAKING</small>
+      <h2>Website <span class="gold">Prices.</span></h2>
+      <p>Pick the website that fits your work. Message us on WhatsApp: <a class="gold" href="https://wa.me/923097570473" target="_blank" rel="noopener">+92 309 7570473</a></p>
+    </div>
+    <div class="grid three">
+      <article class="card price-card">
+        <span class="tier">BASIC</span>
+        <div class="price">Rs 3,000 – 5,000</div>
+        <div class="price-note">Basic website</div>
+        <ul class="feat"><li>Based on 5 to 8 pages</li></ul>
+        <a href="https://wa.me/923097570473?text=Hi%2C%20I%20want%20the%20Basic%20website%20%28Rs%203%2C000%20-%205%2C000%29." class="btn" target="_blank" rel="noopener">Choose Basic ↗</a>
+      </article>
+      <article class="card price-card">
+        <span class="tier">INTERMEDIATE</span>
+        <div class="price">Rs 5,000 – 8,000</div>
+        <div class="price-note">Intermediate website</div>
+        <ul class="feat"><li>Up to 15 pages</li><li>Animations and more</li></ul>
+        <a href="https://wa.me/923097570473?text=Hi%2C%20I%20want%20the%20Intermediate%20website%20%28Rs%205%2C000%20-%208%2C000%29." class="btn" target="_blank" rel="noopener">Choose Intermediate ↗</a>
+      </article>
+      <article class="card price-card">
+        <span class="tier">ADVANCED</span>
+        <div class="price">Rs 8,000 – 15,000</div>
+        <div class="price-note">Advanced website</div>
+        <ul class="feat"><li>Up to 30 pages</li><li>Advanced technology</li></ul>
+        <a href="https://wa.me/923097570473?text=Hi%2C%20I%20want%20the%20Advanced%20website%20%28Rs%208%2C000%20-%2015%2C000%29." class="btn" target="_blank" rel="noopener">Choose Advanced ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-view" id="view-animation" hidden>
+  <div class="container">
+    <a class="back" href="#home" data-go="">← Back to Home</a>
+    <div class="section-title">
+      <small>MOVIE ANIMATION</small>
+      <h2>Create Your <span class="gold">Movie Animation.</span></h2>
+      <p>Animation is available at different prices, depending on length and style.</p>
+    </div>
+    <div class="contact-card">
+      <div class="eyebrow">GET A PRICE</div>
+      <h2>Tell Us <span class="gold">Your Idea.</span></h2>
+      <p>Send us your idea, the length and the style you want. We will message you the price.</p>
+      <div class="actions" style="justify-content:center">
+        <a href="https://wa.me/923076231094?text=Hi%2C%20I%20want%20a%20movie%20animation.%20Please%20tell%20me%20the%20price." class="btn" target="_blank" rel="noopener">Message Us on WhatsApp ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 <footer>
   <div class="container footer-inner">
     <a class="logo" href="#home">AJAR <span>&amp;</span> TAYYAB</a>
     <p>© <span id="year"></span> Tayyab &amp; Ajar. All rights reserved.</p>
-    <a class="text-link" href="#home">BACK TO TOP ↑</a>
+    <a class="text-link" href="#home" data-top>BACK TO TOP ↑</a>
   </div>
 </footer>
 <script>
@@ -244,7 +375,57 @@ document.getElementById("year").textContent = new Date().getFullYear();
 (function(){
   const loader = document.getElementById("loader");
   if (!loader) return;
+  const home = document.querySelector("main");
+  const views = [...document.querySelectorAll(".page-view")];
+  const names = views.map(v => v.id.replace("view-", ""));
+  const root = document.documentElement;
+  let current = "", busy = false, expected = null;
   const t0 = Date.now();
+  const toTop = () => { root.style.scrollBehavior = "auto"; window.scrollTo(0, 0); root.style.scrollBehavior = ""; };
+  const jump = el => { root.style.scrollBehavior = "auto"; el.scrollIntoView(); root.style.scrollBehavior = ""; };
+  function apply(name){
+    current = name;
+    home.hidden = !!name;
+    views.forEach(v => { v.hidden = v.id !== "view-" + name; });
+    toTop();
+  }
+  function go(name, after){
+    if (busy || (name === current && !after)) return;
+    busy = true;
+    loader.style.animation = "none";
+    loader.classList.remove("done");
+    setTimeout(() => {
+      apply(name);
+      if (after) after();
+      setTimeout(() => { loader.classList.add("done"); busy = false; }, 250);
+    }, 1000);
+  }
+  function setHash(h){
+    try { expected = h; location.hash = h; } catch (e) { expected = null; }
+  }
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a");
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+    const href = a.getAttribute("href") || "";
+    if (a.hasAttribute("data-top") && current) { e.preventDefault(); toTop(); return; }
+    if (a.hasAttribute("data-go")) {
+      e.preventDefault();
+      const name = a.getAttribute("data-go");
+      go(name);
+      setHash(name || "home");
+    } else if (href.length > 1 && href.charAt(0) === "#" && current) {
+      e.preventDefault();
+      const id = href.slice(1);
+      go("", () => { const el = document.getElementById(id); if (el) jump(el); });
+    }
+  });
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.slice(1);
+    if (expected !== null && h === expected) { expected = null; return; }
+    go(names.indexOf(h) > -1 ? h : "");
+  });
+  const h0 = location.hash.slice(1);
+  if (names.indexOf(h0) > -1) apply(h0);
   const hide = () => setTimeout(() => loader.classList.add("done"), Math.max(0, 1400 - (Date.now() - t0)));
   if (document.readyState === "complete") hide(); else window.addEventListener("load", hide);
 })();
@@ -266,15 +447,19 @@ document.getElementById("year").textContent = new Date().getFullYear();
     const atEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
     if (atEnd) slider.scrollTo({left: 0, behavior: "smooth"});
     else slider.scrollBy({left: card.offsetWidth + 22, behavior: "smooth"});
-  }, 3500);
+  }, 4500);
 })();
 const elements = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        const el = entry.target;
+        const sibs = [...el.parentElement.children].filter(c => c.classList.contains("reveal"));
+        el.style.transitionDelay = (sibs.indexOf(el) * 140) + "ms";
+        el.classList.add("visible");
+        setTimeout(() => { el.style.transitionDelay = ""; }, 1500);
+        observer.unobserve(el);
       }
     });
   }, {threshold: 0.12});
